@@ -1,77 +1,41 @@
 <template>
-  <header class="header">
-    <label for="">
-      Type character name here:
-      <input 
-        type="text"
-        v-model="characterName" 
-
-      />
-      <button
-        class="searchbutton"
-        @click="searchCharacter()"
-      >
-      Search
-      </button>
-    </label>
-  </header>
-
-  <main 
-    class="main"
-    v-if="Object.entries(characterData).length > 0"
-  >
-    <section class="characterCard">
-      <div class="nameImage">
-        <h1 class="characterName">{{ characterData.name }}</h1>
-        <img 
-          class="characterImage"
-          :src="`https://api.genshin.dev/characters/${characterName}/icon`"
-          :alt="characterData.name"
-        >
-      </div> 
-      <ul class="element">
-        <h2>Element:</h2>
-          <span> {{ characterData.vision }}</span>
-      </ul> 
-      <ul class="weapon">
-        <h2>Weapon:</h2>
-          <span> {{ characterData.weapon }}</span>
-      </ul>
-    </section>
-  </main>
+  <div class="app">
+    <Navigation/>
+    <router-view />
+    
+  </div>
 </template>
 
 <script>
-  import { giapi } from "@/api/giapi";
+import Navigation from './components/Navigation.vue';
+import CharacterCard from './components/CharacterCard.vue';
 
-  export default {
-    name: "App",
-
-    data() {
-      return {
-        characterData: {},
-        characterName: "",
-      }
-    },
-
-    methods: {
-      async searchCharacter() {
-        try{
-          const characterToSearch = await fetch(`${giapi}/${this.characterName}`)
-          const character  = await characterToSearch.json()
-          this.characterData = character
-          console.log(character)
-          return character
-        } catch (error) {
-          alert('Character not found')
-        }
-      }
-    }
+export default {
+  name: "App",
+  components: {
+    Navigation,
+    CharacterCard,
   }
+};
 </script>
 
 <style lang="scss">
-
+@import url('https://fonts.googleapis.com/css?family=Raleway:wght@400;500&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+}
+.app {
+  min-height: 100vh;
+  position: relative;
+  background-color: #f1f1f1;
+}
+.container {
+  padding: 0 20px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
 </style>
-
-

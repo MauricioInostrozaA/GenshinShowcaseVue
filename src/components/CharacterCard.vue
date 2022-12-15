@@ -1,30 +1,79 @@
 <template>
     <div class="characterCard" >
-        <div class="StatsTable">
-            <div tabindex="-1" class="row DEFENSE svelte-1ujofp1 exp">
-                <svg focusable="false" viewBox="0 0 14 14"><path fill="currentColor" d="M13.442.726a.291.291 0 0 0-.175-.268C12.859.286 11.503 0 7 0S1.143.286.735.458a.291.291 0 0 0-.176.269v7.44a.868.868 0 0 0 .125.453c1.579 2.6 5.347 4.855 6.16 5.339a.292.292 0 0 0 .3 0c.79-.482 4.56-2.688 6.169-5.335a.868.868 0 0 0 .127-.455zM7 11.968c.059.013-3.56-2.017-4.824-4.368V1.565s0-.452 4.824-.452z"></path>
-                </svg> 
-                <div class="mid svelte-1ujofp1">
-                    <span class="svelte-1ujofp1">DEF</span> 
-                    <span class="sep svelte-1ujofp1"></span> 
-                    <span class="svelte-1ujofp1">1,316</span>
-                </div> 
-                <div class="row small svelte-1ujofp1">
-                    <div class="mid svelte-1ujofp1">
-                        <span class="sep"></span> 
-                        <span class="svelte-1ujofp1">702 
-                            <span class="svelte-1ujofp1">+614</span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <button class="float-button"
+        @click="getStats()">
+            BUSCAR
+        </button>
+        <div class="characterInfo">
+            <character-splash :splash="this.character.splash"></character-splash>
+            <statistics-card :statistics="this.character.stats"></statistics-card>
+            <character-equip :equipment="this.character.equipment"></character-equip>
+        </div> 
     </div>
 </template>
 
  
 <script>
+import CharacterSplash from './CharacterSplash.vue';
+import StatisticsCard from './StatisticsCard.vue';
+import CharacterEquip from './CharacterEquip.vue';
+import { mapGetters } from 'vuex';
 
+ export default {
+    name: 'CharacterCard',
+    props: {
+    },
+    data() {
+        return {
+            UID: "601735795",
+            character0: {
+                name: "Klee",
+                splash: {
+                    image: "https://static.wikia.nocookie.net/gensin-impact/images/6/6b/Character_Klee_Thumb.png/revision/latest/scale-to-width-down/256?cb=20201116013936",
+                },
+                stats: {
+                    HP: {
+                        name: "HP",
+                        value: 1234,
+                    },
+                    ATK: {
+                        name: "ATK",
+                        value: 1234,
+                    },
+                    DEF: {
+                        name: "DEF",
+                        value: 1234,
+                    },
+                    ELE: {
+                        name: "ELE",
+                        value: 1234,
+                    },
+                },
+                equipment: {
+                    sword: "10 ATK",
+                }
+
+            }
+        }
+    },
+    computed: {
+        ...mapGetters({
+            currentCharacter: 'currentCharacter',
+        })
+    },
+    components: {
+        CharacterSplash,
+        StatisticsCard,
+        CharacterEquip,
+    },
+    methods: {
+        getStats() {
+            console.log(this.UID);
+            const userID = this.UID;
+            this.$store.dispatch('SEARCH_GENSHIN_DATA', userID);
+        }
+    }
+}
 </script>
 
 
@@ -40,13 +89,32 @@
     height: 75vh;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    border: 2px solid black;
+    border: 2px solid green;
     border-radius: 10px;
     margin:auto;
 }
-
+.characterInfo {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid blue;
+}
+.float-button {
+    position: absolute;
+    top: 5vh;
+    right: 5vw;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid black;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+    cursor: pointer;
+}
 
 .row
 .svelte-1ujofp1 {

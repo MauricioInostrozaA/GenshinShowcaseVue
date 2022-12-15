@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 .character-equip-card {
-    width: 25%;
+    width: 30%;
     height: 100%;
     border: 1px solid yellow;
 }

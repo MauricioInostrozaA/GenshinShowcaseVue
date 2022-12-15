@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 .statistics-card {
-    width: 25%;
+    width: 30%;
     height: 100%;
     display: flex;
     align-items: center;

@@ -26,10 +26,10 @@ import { mapGetters } from 'vuex';
     data() {
         return {
             UID: "601735795",
-            character0: {
-                name: "Klee",
+            character: {
+                name: "Ayaka",
                 splash: {
-                    image: "https://static.wikia.nocookie.net/gensin-impact/images/6/6b/Character_Klee_Thumb.png/revision/latest/scale-to-width-down/256?cb=20201116013936",
+                    image: "https://enka.network/ui/UI_Gacha_AvatarImg_Ayaka.png",
                 },
                 stats: {
                     HP: {

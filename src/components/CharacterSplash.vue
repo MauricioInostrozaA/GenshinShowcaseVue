@@ -1,5 +1,6 @@
 <template>
     <section class="splash-card">
+        <img class="splash-image" :src="this.splash.image" alt="character splash image">
     </section>
 </template>
 
@@ -23,9 +24,14 @@ export default {
 
 <style scoped>
 .splash-card {
-    width: 55%;
+    width: 40%;
     height: 100%;
     border: 1px solid purple;
 }
 
+.splash-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 </style>

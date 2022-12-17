@@ -1,19 +1,35 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 
-const API_URL = 'https://enka.network/u/';
-const apiGenshinUid = axios.create({
+const { Wrapper } = require('enkanetwork.js')
+const { AssetImageFinder } = require('enkanetwork.js')
+
+const options = {
+  locale: 'en'
+};
+
+const client = new Wrapper(options)
+
+/*const API_URL = 'https://enka.network/u/';
+const apiFetchUid = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
   },
 });
+*/
 
+/*
+const finder = new AssetImageFinder()
 
-
+function getCharacterImage(id) {
+	const image = finder.character(id).icon // Output: UI_AvatarIcon_Xiao
+}
+console.log(getCharacterImage(10000026));
+*/
 export default createStore({
   state: {
-    currentCharacter: {},
+    userData: {},
   },
   mutations: {
     SET_ITEM(state, { item, value }) {
@@ -21,27 +37,27 @@ export default createStore({
     },
   },
   actions: {
-    // * GENSHIN DATA * //
-    SEARCH_GENSHIN_DATA: ({ state, commit }, payload) => new Promise((resolve) => {
+    GET_USER_DATA: ({ state, commit }, payload) => new Promise((resolve) => {
       console.log('Buscando data', payload);
-      const querySearch = payload.userID;
-      async function getGenshinData() {
+      const querySearch = payload.userUID;
+      async function getData() { 
         try {
-          const response = await apiGenshinUid.get('/'+ payload);
-          console.log(response.data);
+          const data = await client.getPlayer(payload)
+          console.log(data)
           commit('SET_ITEM', {
-            item: 'currentCharacter',
-            value: response.data,
+            item: 'userData',
+            value: data,
           });
-          resolve(state.currentCharacter);
+          resolve(state.userData);
         } catch (error) {
           console.log(error);
         }
       }
-      getGenshinData(querySearch);
+      getData(querySearch);
     }),
   },
   getters: {
-    currentCharacter: (state) => state.currentCharacter,
-  }
+    userData: (state) => state.userData,
+  },
+  
 })

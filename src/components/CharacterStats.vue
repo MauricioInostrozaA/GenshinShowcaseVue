@@ -1,13 +1,12 @@
 <template>
-    <section class="statistics-card">
+    <section class="stats-card">
         <div class="stats">
-                <!--make a v-for list of the stats-->
-            <div class="stat" v-for="stat in this.statistics" :key="stat.name">
+            <div class="stat" v-for="stat in this.stats" :key="stat.name">
                 <div class="stat-name">
                     <span>{{stat.name}}</span>
                 </div>
                 <div class="stat-value">
-                    <span>{{stat.value}}</span>
+                    <span>{{stat.value}}</span> 
                 </div>
             </div>
         </div>
@@ -16,9 +15,9 @@
 
 <script>
 export default {
-    name: 'StatisticsCard',
+    name: 'CharacterStats',
     props: {
-        statistics: {
+    stats: {
             type: Object,
             required: true
         }
@@ -33,7 +32,7 @@ export default {
 </script>
 
 <style scoped>
-.statistics-card {
+.stats-card {
     width: 30%;
     height: 100%;
     display: flex;
@@ -49,7 +48,7 @@ export default {
 }
 .stat {
     width: 100%;
-    height: 13%;
+    height: 8%;
     display: flex;
     align-items: center;
     justify-content: top;

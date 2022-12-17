@@ -1,89 +1,144 @@
 <template>
+    <button class="update-button" @click="updateComponent">Update component</button>
     <div class="characterCard" >
-        <button class="float-button"
-        @click="getStats()">
+        <!--<button class="float-button"
+        @click="getData()">
             BUSCAR
-        </button>
+        </button>-->
         <div class="characterInfo">
-            <character-splash :splash="this.character.splash"></character-splash>
-            <statistics-card :statistics="this.character.stats"></statistics-card>
-            <character-equip :equipment="this.character.equipment"></character-equip>
+            <character-splash :splash="this.character.splash" :character-name="this.character.characterName"></character-splash>
+            <character-stats :stats="this.stats"></character-stats>
+            <character-artifacts :artifacts="this.artifacts"></character-artifacts>
         </div> 
+    </div>
+    <div>
+        <p>{{userData.charactersInfo[0].characterId}}</p>
+        <p>{{userData.charactersInfo[1].characterId}}</p>
+        <p>{{userData.charactersInfo[2].characterId}}</p>
+        <p>{{userData.charactersInfo[3].characterId}}</p>
+        <p>{{userData.charactersInfo[4].characterId}}</p>
+    
     </div>
 </template>
 
  
 <script>
 import CharacterSplash from './CharacterSplash.vue';
-import StatisticsCard from './StatisticsCard.vue';
-import CharacterEquip from './CharacterEquip.vue';
+import CharacterStats from './CharacterStats.vue';
+import CharacterArtifacts from './CharacterArtifacts.vue';
 import { mapGetters } from 'vuex';
 
- export default {
+
+
+export default {
+    created() {
+        this.getData();
+    },
     name: 'CharacterCard',
     props: {
     },
     data() {
         return {
-            UID: "601735795",
+            UID: 601735795,
             character: {
-                name: "Ayaka",
+                characterName: "Kamisato Ayaka",
                 splash: {
                     image: "https://enka.network/ui/UI_Gacha_AvatarImg_Ayaka.png",
                 },
-                stats: {
-                    HP: {
-                        name: "HP",
-                        value: 1234,
-                    },
-                    ATK: {
-                        name: "ATK",
-                        value: 1234,
-                    },
-                    DEF: {
-                        name: "DEF",
-                        value: 1234,
-                    },
-                    ELE: {
-                        name: "ELE",
-                        value: 1234,
-                    },
+            },
+            stats: {
+                MaxHP: 0,
+                ATK: 0,
+                DEF: 0,
+                ElementalMastery: 0,
+                CritRate: 0,
+                CritDMG: 0,
+                EnergyRecharge: 0,
+                CryoDMG: 1,
+            },
+            artifacts: {
+                flower: {
+                    name: "Blizzard Strayer",
+                    image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
+                    mainStat: "ATK",
+                    mainStatValue: 0.5,
+                    subStat: "CRIT DMG",
+                    subStatValue: 0.5,
+                    subStat2: "CRIT Rate",
+                    subStat2Value: 0.5,
                 },
-                equipment: {
-                    sword: "10 ATK",
-                }
-
+                feather: {
+                    name: "Blizzard Strayer",
+                    image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
+                    mainStat: "ATK",
+                    mainStatValue: 0.5,
+                    subStat: "CRIT DMG",
+                    subStatValue: 0.5,
+                    subStat2: "CRIT Rate",
+                    subStat2Value: 0.5,
+                },
+                sands: {
+                    name: "Blizzard Strayer",
+                    image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
+                    mainStat: "ATK",
+                    mainStatValue: 0.5,
+                    subStat: "CRIT DMG",
+                    subStatValue: 0.5,
+                    subStat2: "CRIT Rate",
+                    subStat2Value: 0.5,
+                },
+                goblet: {
+                    name: "Blizzard Strayer",
+                    image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
+                    mainStat: "ATK",
+                    mainStatValue: 0.5,
+                    subStat: "CRIT DMG",
+                    subStatValue: 0.5,
+                    subStat2: "CRIT Rate",
+                    subStat2Value: 0.5,
+                },
+                circlet: {
+                    name: "Blizzard Strayer",
+                    image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
+                    mainStat: "ATK",
+                    mainStatValue: 0.5,
+                    subStat: "CRIT DMG",
+                    subStatValue: 0.5,
+                    subStat2: "CRIT Rate",
+                    subStat2Value: 0.5,
+                },
             }
         }
     },
     computed: {
         ...mapGetters({
-            currentCharacter: 'currentCharacter',
+            userData: 'userData',
         })
     },
     components: {
         CharacterSplash,
-        StatisticsCard,
-        CharacterEquip,
+        CharacterStats,
+        CharacterArtifacts,
     },
     methods: {
-        getStats() {
-            console.log(this.UID);
-            const userID = this.UID;
-            this.$store.dispatch('SEARCH_GENSHIN_DATA', userID);
+        getData() {
+            //console.log(this.UID);
+            const userUID = this.UID;
+            this.$store.dispatch('GET_USER_DATA', userUID);
         }
     }
 }
 </script>
 
 
-<style>
+<style scope>
 .characterCard {
     max-width: 500px;
     min-width: 1200px;;
-    background-image: url("../assets/cryo_bg.png");
+    background-image: url("https://genshindb.org/wp-content/uploads/2021/02/Kamisato-Ayaka-Namecard-Folding-Fan.png");
+    box-shadow: 0 0.5em 1.4em #00000021;
     background-size: cover;
-    background-position: center right -210px;
+    background-position: center;
     background-attachment: fixed; 
     position: relative;
     height: 75vh;
@@ -101,33 +156,20 @@ import { mapGetters } from 'vuex';
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid blue;
+    /*border: 2px solid blue;*/
 }
 .float-button {
     position: absolute;
     top: 5vh;
     right: 5vw;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     background-color: red;
     border-radius: 50%;
     border: 2px solid black;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
     cursor: pointer;
 }
-
-.row
-.svelte-1ujofp1 {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-}
-
-.Card.svelte-ps463l * {
-    box-sizing: border-box;
-    text-size-adjust: none;
-}
-
 .StatsTable {
     color: #fff;
     display: flex;

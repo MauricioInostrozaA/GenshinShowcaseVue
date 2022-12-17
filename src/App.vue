@@ -3,6 +3,7 @@
     <Navigation/>
     <router-view />
     
+    
   </div>
 </template>
 
@@ -15,6 +16,11 @@ export default {
   components: {
     Navigation,
     CharacterCard,
+  },
+  methods: {
+    updateComponent() {
+      this.$forceUpdate()
+    }
   }
 };
 </script>

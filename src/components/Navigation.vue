@@ -6,7 +6,7 @@
         </div>
         <ul v-show="!mobile" class="navigation">
           <li><router-link class="link" :to="{name: 'Home'}">Home</router-link></li>
-          <li><router-link class="link" :to="{name: ''}">TAB2</router-link></li>
+          <li><button class="float-button" @click="getData()">BUSCAR</button></li>
           <li><router-link class="link" :to="{name: ''}">TAB3</router-link></li>
           <li><router-link class="link" :to="{name: ''}">TAB4</router-link></li>
         </ul>
@@ -30,6 +30,7 @@
     name: "navigation",
     data() {
       return {
+        UID: 601735795,
         scrolledNav: null,
         mobile: null,
         mobileNav: null,
@@ -43,7 +44,12 @@
     mounted() {
       window.addEventListener('scroll', this.updateScroll);
     },
-    methods: {
+    methods:{
+      getData() {
+            //console.log(this.UID);
+            const userUID = this.UID;
+            this.$store.dispatch('GET_USER_DATA', userUID);
+      },
       toggleMobileNav() {
         this.mobileNav = !this.mobileNav;
       },

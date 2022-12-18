@@ -1,14 +1,15 @@
 <template>
     <section class="stats-card">
         <div class="stats">
-            <div class="stat" v-for="stat in this.stats" :key="stat.name">
-                <div class="stat-name">
-                    <span>{{stat.name}}</span>
+            <div Class="stat">
+                <div Class="stat-name">
+                    <span>ATK:</span>
                 </div>
-                <div class="stat-value">
-                    <span>{{stat.value}}</span> 
+                <div Class="stat-value" >
+                    <span v-if="userData != null"> {{userData.charactersInfo[0].stats.atk.value}} </span> 
                 </div>
-            </div>
+
+            </div>             
         </div>
     </section>
 </template>
@@ -17,7 +18,7 @@
 export default {
     name: 'CharacterStats',
     props: {
-    stats: {
+        userData: {
             type: Object,
             required: true
         }
@@ -25,6 +26,7 @@ export default {
     data() {
         return {
         }
+
     },
     methods: {
     }

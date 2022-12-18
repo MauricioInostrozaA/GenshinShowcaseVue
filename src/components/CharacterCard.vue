@@ -1,24 +1,13 @@
 <template>
-    <button class="update-button" @click="updateComponent">Update component</button>
     <div class="characterCard" >
-        <!--<button class="float-button"
-        @click="getData()">
-            BUSCAR
-        </button>-->
+        <button Class="float-button" @click="getData()">BUSCAR</button>
         <div class="characterInfo">
             <character-splash :splash="this.character.splash" :character-name="this.character.characterName"></character-splash>
-            <character-stats :stats="this.stats"></character-stats>
+            <character-stats v-if="userData" :userData="userData"></character-stats>
             <character-artifacts :artifacts="this.artifacts"></character-artifacts>
         </div> 
     </div>
-    <div>
-        <p>{{userData.charactersInfo[0].characterId}}</p>
-        <p>{{userData.charactersInfo[1].characterId}}</p>
-        <p>{{userData.charactersInfo[2].characterId}}</p>
-        <p>{{userData.charactersInfo[3].characterId}}</p>
-        <p>{{userData.charactersInfo[4].characterId}}</p>
-    
-    </div>
+
 </template>
 
  
@@ -31,9 +20,6 @@ import { mapGetters } from 'vuex';
 
 
 export default {
-    created() {
-        this.getData();
-    },
     name: 'CharacterCard',
     props: {
     },
@@ -47,7 +33,7 @@ export default {
                 },
             },
             stats: {
-                MaxHP: 0,
+                MaxHP: 2,
                 ATK: 0,
                 DEF: 0,
                 ElementalMastery: 0,
@@ -60,52 +46,22 @@ export default {
                 flower: {
                     name: "Blizzard Strayer",
                     image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
-                    mainStat: "ATK",
-                    mainStatValue: 0.5,
-                    subStat: "CRIT DMG",
-                    subStatValue: 0.5,
-                    subStat2: "CRIT Rate",
-                    subStat2Value: 0.5,
                 },
                 feather: {
                     name: "Blizzard Strayer",
                     image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
-                    mainStat: "ATK",
-                    mainStatValue: 0.5,
-                    subStat: "CRIT DMG",
-                    subStatValue: 0.5,
-                    subStat2: "CRIT Rate",
-                    subStat2Value: 0.5,
                 },
                 sands: {
                     name: "Blizzard Strayer",
                     image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
-                    mainStat: "ATK",
-                    mainStatValue: 0.5,
-                    subStat: "CRIT DMG",
-                    subStatValue: 0.5,
-                    subStat2: "CRIT Rate",
-                    subStat2Value: 0.5,
                 },
                 goblet: {
                     name: "Blizzard Strayer",
                     image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
-                    mainStat: "ATK",
-                    mainStatValue: 0.5,
-                    subStat: "CRIT DMG",
-                    subStatValue: 0.5,
-                    subStat2: "CRIT Rate",
-                    subStat2Value: 0.5,
                 },
                 circlet: {
                     name: "Blizzard Strayer",
                     image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
-                    mainStat: "ATK",
-                    mainStatValue: 0.5,
-                    subStat: "CRIT DMG",
-                    subStatValue: 0.5,
-                    subStat2: "CRIT Rate",
-                    subStat2Value: 0.5,
                 },
             }
         }

@@ -1,13 +1,17 @@
 <template>
     <section class="stats-card">
-        <div class="stats">
-            <div Class="stat">
+        <div v-if="userDataFetched === true"
+        class="stats">
+            <div v-for="stat in statsArray"
+            class="stat">
                 <div Class="stat-name">
                     <span>ATK:</span>
                 </div>
                 <div Class="stat-value" >
-                    <span v-if="userData != null"> {{userData.charactersInfo[0].stats.atk.value}} </span> 
-                </div>
+                    <span> {{stat.atk.value}} </span>
+                    <!--<span v-if="userDataFetched === true"> {{userData.charactersInfo[0].stats.atk.value}} </span> 
+                -->
+                    </div>
 
             </div>             
         </div>
@@ -25,10 +29,26 @@ export default {
     },
     data() {
         return {
+            userDataFetched: false,
         }
-
+    },
+    computed: {
+        userDataToObject() {
+            return Object.assign(this.userData.charactersInfo);
+        },
+        KamisatoAyaka () {
+            return this.userDataToObject.find(character => character.characterId === "10000002");
+        }	
+    },
+    mounted() {
+        this.userDataVerification();
     },
     methods: {
+        userDataVerification() {
+            if (this.userData) {
+                this.userDataFetched = true;
+            }
+        }
     }
 }
 </script>

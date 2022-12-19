@@ -82,7 +82,10 @@ export default {
             const userUID = this.UID;
             this.$store.dispatch('GET_USER_DATA', userUID);
         }
-    }
+    },
+    created() {
+        this.getData();
+    },
 }
 </script>
 

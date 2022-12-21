@@ -47,22 +47,6 @@ export default {
                     name: "Blizzard Strayer",
                     image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
                 },
-                feather: {
-                    name: "Blizzard Strayer",
-                    image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
-                },
-                sands: {
-                    name: "Blizzard Strayer",
-                    image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
-                },
-                goblet: {
-                    name: "Blizzard Strayer",
-                    image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
-                },
-                circlet: {
-                    name: "Blizzard Strayer",
-                    image: "https://enka.network/ui/UI_RelicIcon_14001_4.png",
-                },
             }
         }
     },

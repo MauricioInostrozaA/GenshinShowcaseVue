@@ -1,18 +1,62 @@
 <template>
     <section class="stats-section">
-        <div v-if="userDataFetched === true" Class="stats-table">
+        <div v-if="userDataFetched === true" class="stats-table">
             <div class="hp-row">
-
-
-
-
-
-
-                <div Class="stat-value" >
-                    <span> {{ CItoObject[0].stats.maxHp.value }} </span>
-                    <!--<span v-if="userDataFetched === true"> {{userData.charactersInfo[0].stats.atk.value}} </span>-->
-                </div> 
-            </div>             
+                <img class="max-hp-svg" src="@/assets/svg/FIGHT_PROP_HP.svg" alt="max hp svg" />
+                <div class="stat">
+                    <span>Max HP</span>
+                    <span class="sep"></span>
+                    <span> {{ Math.round(CItoObject[0].stats.maxHp.value) }} </span>
+                </div>
+            </div>
+            <div class="atk-row">
+                <img class="atk-svg" src="@/assets/svg/FIGHT_PROP_ATTACK.svg" alt="atk svg" />
+                <div class="stat">
+                    <span>ATK</span>
+                    <span class="sep"></span>
+                    <span> {{ Math.round(CItoObject[0].stats.atk.value) }} </span>
+                </div>
+            </div>
+            <div class="def-row">
+                <img class="def-svg" src="@/assets/svg/FIGHT_PROP_DEFENSE.svg" alt="def svg" />
+                <div class="stat">
+                    <span>DEF</span>
+                    <span class="sep"></span>
+                    <span> {{ Math.round(CItoObject[0].stats.def.value) }} </span>
+                </div>
+            </div>   
+            <div class="em-row">
+                <img class="em-svg" src="@/assets/svg/FIGHT_PROP_ELEMENT_MASTERY.svg" alt="em svg" />
+                <div class="stat">
+                    <span>Elemental Mastery</span>
+                    <span class="sep"></span>
+                    <span> {{ Math.round(CItoObject[0].stats.elementalMastery.value) }} </span>
+                </div>
+            </div>     
+            <div class="cr-row">
+                <img class="cr-svg" src="@/assets/svg/FIGHT_PROP_CRITICAL.svg" alt="cr svg" />
+                <div class="stat">
+                    <span>CRIT Rate</span>
+                    <span class="sep"></span>
+                    <span> {{ (CItoObject[0].stats.critRate.value * 100).toFixed(1) }}%</span>
+                </div>
+            </div>     
+            <div class="cd-row">
+                <img class="cd-svg" src="@/assets/svg/FIGHT_PROP_CRITICAL_HURT.svg" alt="cd svg" />
+                <div class="stat">
+                    <span>CRIT DMG</span>
+                    <span class="sep"></span>
+                    <span> {{ (CItoObject[0].stats.critDamage.value * 100).toFixed(1) }}%</span>
+                </div>
+            </div> 
+            <div class="er-row">
+                <img class="er-svg" src="@/assets/svg/FIGHT_PROP_CHARGE_EFFICIENCY.svg" alt="er svg" />
+                <div class="stat">
+                    <span>Energy Recharge</span>
+                    <span class="sep"></span>
+                    <span> {{ (CItoObject[0].stats.energyRecharge.value * 100).toFixed(1) }}%</span>
+                </div>
+            </div>  
         </div>
     </section>
 </template>
@@ -66,28 +110,29 @@ export default {
     display: block;
     border: 1px solid red;
 }
-.stat {
+.hp-row, .atk-row, .def-row, .em-row, .cr-row, .cd-row, .er-row{
     width: 100%;
-    height: 8%;
+    height: 10%;
     display: flex;
     align-items: center;
-    border: 1px solid green;
+    border: 1px solid yellow;
 }
-.stat-name {
-    width: 50%;
-    height: 100%;
-    border: 1px solid green;
-}
-.stat-name span {
-    font-size: 10px;
+.stat {
+    width: 100%;
+    height: 50%;
+    border: 1px solid white;
+    font-size: 15px;
+    align-items: center;
     color: white;
+    display: flex;
 }
-.stat-value {
-    width: 50%;
-    height: 100%;
-    border: 1px solid green;
-    font-size: 10px;
-    color: white;
+.sep {
+    flex-grow: 1;
+    border: 1px solid red;
 }
-
+.max-hp-svg, .atk-svg, .def-svg, .em-svg, .cr-svg, .cd-svg, .er-svg{
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
 </style>

@@ -25,22 +25,12 @@ export default {
     },
     data() {
         return {
-            UID: 601735795,
+            UID: 600003046  ,
             character: {
-                characterName: "Kamisato Ayaka",
+                characterName: "Ganyu",
                 splash: {
-                    image: "https://enka.network/ui/UI_Gacha_AvatarImg_Ayaka.png",
+                    image: "https://enka.network/ui/UI_Gacha_AvatarImg_Ganyu.png",
                 },
-            },
-            stats: {
-                MaxHP: 2,
-                ATK: 0,
-                DEF: 0,
-                ElementalMastery: 0,
-                CritRate: 0,
-                CritDMG: 0,
-                EnergyRecharge: 0,
-                CryoDMG: 1,
             },
             artifacts: {
                 flower: {

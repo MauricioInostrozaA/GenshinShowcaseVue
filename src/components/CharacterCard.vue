@@ -1,6 +1,6 @@
 <template>
     <div class="characterCard" >
-        <button Class="float-button" @click="getData()">BUSCAR</button>
+        <!--<button Class="float-button" @click="getData()">BUSCAR</button>-->
         <div class="characterInfo">
             <character-splash :splash="this.character.splash" :character-name="this.character.characterName"></character-splash>
             <character-stats v-if="userData" :userData="userData"></character-stats>
